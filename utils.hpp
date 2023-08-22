@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <random>
 
 int	ft_atoi(const char* a)
 {

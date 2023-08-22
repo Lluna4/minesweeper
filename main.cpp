@@ -1,9 +1,13 @@
-#include <iostream>
-#include <vector>
 #include "utils.hpp"
 
 void gen_tabla(std::vector<std::vector<int>> &tabla, int height, int width, int mines)
 {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distr(0, height - 1);
+    std::uniform_int_distribution<> distrx(0, width - 1);
+    int x = 0;
+    int y = 0;
     for (int i = 0; i < height; i++)
     {   
         std::vector<int> row;
@@ -12,6 +16,13 @@ void gen_tabla(std::vector<std::vector<int>> &tabla, int height, int width, int 
             row.push_back(0);
         }
         tabla.push_back(row);
+    }
+    for (int i = 0; i < mines; i++)
+    {
+        x = distr(gen);
+        y = distrx(gen);
+        if (tabla[x][y] == 0)
+            tabla[x][y] = 1;
     }
 }
 
